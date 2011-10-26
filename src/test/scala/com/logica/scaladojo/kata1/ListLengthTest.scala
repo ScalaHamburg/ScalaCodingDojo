@@ -1,14 +1,14 @@
 package com.logica.scaladojo.kata1
 
+import java.lang.StackOverflowError
+import java.lang.System
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import org.scalatest.matchers.ShouldMatchers._
-
 import scaladojo.testengine.AbstractTest
 
 class ListLengthTest extends AbstractTest {
+  
   @Before def before {
   	printHeading(1)
   }
