@@ -19,7 +19,7 @@ class AbstractTest extends AssertionsForJUnit with ShouldMatchersForJUnit with A
   }
 
   /**
-   * 
+   * Führt den Testcode aus und gibt im Fehlerfall eine Meldung aus.
    */
   def execute(testCode: => Unit) {
     try {
@@ -27,10 +27,14 @@ class AbstractTest extends AssertionsForJUnit with ShouldMatchersForJUnit with A
       printSuccess(getCurrentMethodName)
     } catch {
       case x => {
-        printFail(x.getMessage())
+        printFail(getCurrentMethodName +":"+x.getMessage())
         throw x
       }
     }
   }
   
+   override def printFail(text: String): Unit = {
+     super.printFail(text)
+     fail(text)
+   }
 }

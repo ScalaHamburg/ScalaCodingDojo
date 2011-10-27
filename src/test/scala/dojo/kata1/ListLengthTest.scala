@@ -1,4 +1,4 @@
-package com.logica.scaladojo.kata1
+package dojo.kata1
 
 import java.lang.StackOverflowError
 import java.lang.System
@@ -31,7 +31,6 @@ class ListLengthTest extends AbstractTest {
 	    }catch{
 	      case x:StackOverflowError =>{
 	      	printFail("You did'nt use _TAIL_recursion!")
-	      	fail("You did'nt use _TAIL_recursion!", x)              
 	      }
 	    }
     }

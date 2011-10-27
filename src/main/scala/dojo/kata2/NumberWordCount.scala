@@ -1,4 +1,4 @@
-package com.logica.scaladojo.kata1
+package dojo.kata2
 
 /*
  * If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there 
@@ -18,7 +18,7 @@ object NumberWordCount {
   val first = Array("", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty")
   val second = Array("", "ten", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety")
 
-  def letters(start: Int, end: Int) = {
+  def count(start: Int, end: Int) = {
     val numbers = start to end toList
 
     def sumLetters(numbers: List[Int], count: Int): Int = {
@@ -58,7 +58,7 @@ object NumberWordCount {
             print(" " + first(einer))
           }
         }
-        println
+//        println
         sumLetters(numbers.tail, localLength)
       }
     }
@@ -69,13 +69,11 @@ object NumberWordCount {
       val einer = (number - (hunderter * 100) - (zehner * 10))
       (hunderter, zehner, einer)
     }
-    val result = sumLetters(numbers, 0)
-    println(result)
-    println(slimCount)
-    result
+    
+   sumLetters(numbers, 0)
   }
 
-  def slimCount = {
+  def countShort = {
     val OneToNine = Array("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
     val TenToNineteen = Array("ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen")
     val TwentyToNinety = Array("twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety")

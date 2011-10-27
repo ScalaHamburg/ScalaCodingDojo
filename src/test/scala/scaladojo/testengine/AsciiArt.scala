@@ -24,7 +24,7 @@ trait AsciiArt {
   }
 
   def printSuccess(text: String): Unit = {
-    println(text)
+    println("==>" + text)
     println(""" 
         __
        / /
@@ -35,7 +35,7 @@ __    / /
   }
 
   def printFail(text: String): Unit = {
-    println(text)
+    println("==>" +text)
     println("""
 __    __
 \ \  / /

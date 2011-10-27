@@ -1,4 +1,4 @@
-package com.logica.scaladojo.kata1
+package dojo.kata1
 
 /*
  *  a) Find the number of elements of a list.
@@ -13,6 +13,7 @@ package com.logica.scaladojo.kata1
  * Einfach nur die Methoden ausimplementieren und den Test starten (sbt test-only com.logica.scaladojo.kata1.ListLengthTest) 
  */
 object ListLength {
+  
   def lengthOfList(list: List[Any]) = {
     list.length
   }
@@ -24,7 +25,7 @@ object ListLength {
   	len(list, 0)
   }
 
-  def len(list: List[Any], count:Int):Int = {
+  private def len(list: List[Any], count:Int):Int = {
     if(list.isEmpty){
       count
     }else{
