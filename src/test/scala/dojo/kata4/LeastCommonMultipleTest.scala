@@ -11,12 +11,19 @@ class LeastCommonMultipleTest extends AbstractTest {
 
   @Test def testLeastCommonMultiple12and8() {
     execute {
-      LeastCommonMultiple.lcm(List(12,8)) should be (24)
+      LeastCommonMultiple.lcmRecursive(List(12,8)) should be (24)
     }
   }
+  
   @Test def testLeastCommonMultiple1to20() {
     execute {
-      LeastCommonMultiple.lcm (1 to 20) should be (2520)
+      LeastCommonMultiple.lcmRecursive (1 to 20) should be (232792560)
+    }
+  }
+  
+  @Test def testLeastCommonMultiple1to20Short() {
+    execute {
+      LeastCommonMultiple.lcmShort (1 to 20) should be (232792560)
     }
   }
 }
