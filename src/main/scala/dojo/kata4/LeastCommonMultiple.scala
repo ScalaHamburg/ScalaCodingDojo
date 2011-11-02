@@ -13,7 +13,7 @@ object LeastCommonMultiple {
     numbers.foldLeft(1)(lcm(_, _))
   }
   
-  def lcmShort(n: Seq[Int]) = {
+  def lcm(n: Seq[Int]) = {
     (9 to Int.MaxValue)find(x=>n.forall(x%_==0))get
   }
 

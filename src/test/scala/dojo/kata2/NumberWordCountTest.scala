@@ -16,13 +16,11 @@ class NumberWordCountTest extends AbstractTest {
 
   val result = "1a455b216c6e916943acf3fa4c7e57a7a5cac66d97cc51befca810c223ef9c23"
 
-  @Before def before {
-    printHeading(2)
-  }
 
   @Test def testCount() {
-    execute {
+    execute(2) {
       val lengthOfNumbers = NumberWordCount.count(1, 1000)
+      		println("lengthOfNumbers: " + lengthOfNumbers)
       val hash = encrypt(lengthOfNumbers.toString())
 
       val isEqual = hash.toString().equals(result)
@@ -31,7 +29,7 @@ class NumberWordCountTest extends AbstractTest {
   }
   
   @Test def testCountShort() {
-  	execute {
+  	execute(2) {
   		val lengthOfNumbers = NumberWordCount.countShort
   				val hash = encrypt(lengthOfNumbers.toString())
   				

@@ -14,7 +14,7 @@ class ListLengthTest extends AbstractTest {
   }
 
   @Test def testLength() {
-    execute{
+    execute(1){
 	    val len = ListLength.lengthOfList(List("1", "2", "3"))
 	    len should equal(3)
     }
@@ -22,7 +22,7 @@ class ListLengthTest extends AbstractTest {
   }
 
   @Test def testLengthWithTailrecursion() {
-    execute{
+    execute(1){
 	  	try{
 		    val list = 1 to 20000 toList
 		    val len = ListLength.lengthOfListWithTailrecursion(list)
@@ -37,7 +37,7 @@ class ListLengthTest extends AbstractTest {
   }
 
   @Test def testLengthWithFoldingRight() {
-    execute{
+    execute(1){
 	    val tic = System.nanoTime();
 	    val len = ListLength.lengthOfListWithFoldingRight(1 to 2000 toList)
 	    println(System.nanoTime() - tic);
@@ -49,7 +49,7 @@ class ListLengthTest extends AbstractTest {
   }
 
   @Test def testLengthWithFoldingLeft() {
-    execute{
+    execute(1){
 	    val tic = System.nanoTime();
 	    val len = ListLength.lengthOfListWithFoldingLeft(1 to 200000 toList)
 	    println(System.nanoTime() - tic);
