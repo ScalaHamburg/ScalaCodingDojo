@@ -12,5 +12,45 @@ import scala.annotation.tailrec
  * @author Nils Schmidt
  */
 object ProjectEuler10 {
-  def sumOfPrimes(n: Long): Long = {0}
+
+  def sumOfAllPrimesBelowTwoMillion = sumOfPrimes(2000000)
+
+  def sumOfPrimes(n: Long): Long = sumOfPrimes(n, 0)
+
+  @tailrec
+  def sumOfPrimes(n: Long, sumSoFar: Long): Long = {
+    if (n == 2)
+      sumSoFar + 2
+    else {
+      val currentPrime = previousPrime(n)
+      sumOfPrimes(previousPrime(currentPrime - 1), sumSoFar + currentPrime)
+    }
+  }
+
+  private def previousPrime(n: Long): Long = {
+    if (isPrime(n))
+      n
+    else
+      previousPrime(n - 1)
+  }
+
+  private def isPrime(n: Long): Boolean = {
+    if (BigInt(n).isProbablePrime(999)) {
+      if (n == 2)
+        return true
+      else if (n % 2 == 0)
+        return false
+      else {
+        def sqrt = { Math.sqrt(n.toDouble).toLong }
+        for (i <- 3L to sqrt) {
+          if (n % i == 0) {
+            return false
+          }
+        }
+        return true
+      }
+    } else {
+      return false
+    }
+  }
 }
