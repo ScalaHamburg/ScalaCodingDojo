@@ -1,18 +1,18 @@
 Scala Coding Dojo
 =================
 
-Dies ist ein Scala Playground für Neueinsteiger.
+Dies ist ein Scala Playground fÃ¼r Neueinsteiger.
 
 SBT:
 ----
-Als Voraussetzung wird nur ein installiertes SBT (und natürlich GIT) benötigt.
+Als Voraussetzung wird nur ein installiertes SBT (und natÃ¼rlich GIT) benÃ¶tigt.
 Projekt Auschecken, SBT starten und loslegen:
 
 > test-only dojo.kata1.ListLengthTest
 
 Eclipse:
 --------
-- für die abhängigen LIBs muß die Umgebungsvariable IVY_CACHE gesetzt sein:
+- fÃ¼r die abhÃ¤ngigen LIBs muÃŸ die Umgebungsvariable IVY_CACHE gesetzt sein:
   Windoe/Preferences/Java/Buildpath/ClasspathVariables/IVY_CACHE=...
   z.B. {HOME}/.ivy2/cache
 
@@ -23,13 +23,13 @@ Im Moment herrscht hier noch das Chaos - aber: "with a little help..."
 PLan:
 -----
 - Nach und nach werden hier neue Aufgaben zu den einzelnen Themenschwerpunkten eingestellt.
-- Momentan sind hier auch noch "die" Lösungen enthalten. Um den Spaß nicht zu verderben, 
+- Momentan sind hier auch noch "die" LÃ¶sungen enthalten. Um den SpaÃŸ nicht zu verderben, 
   sollten die noch in ein zweites Projekt ausgelagert werden.
-- Die Tests sollten so angepasst werden, daß auch mehrere Lösungswege komfortabel unterstützt werden
+- Die Tests sollten so angepasst werden, daÃŸ auch mehrere LÃ¶sungswege komfortabel unterstÃ¼tzt werden
 
-Jedes Mitglied der ScalaHamburg Gruppe darf Änderungen pushen - mal sehen wie weit wir kommen.
+Jedes Mitglied der ScalaHamburg Gruppe darf Ã„nderungen pushen - mal sehen wie weit wir kommen.
 
 
-Viel Spaß beim Hacken!
+Viel SpaÃŸ beim Hacken!
 
 mfGrusz PTR
