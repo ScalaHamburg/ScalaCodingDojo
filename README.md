@@ -8,7 +8,7 @@ SBT:
 Als Voraussetzung wird nur ein installiertes SBT (und natürlich GIT) benötigt.
 Projekt auschecken, SBT starten und loslegen:
 
-> test-only dojo.kata1.ListLengthTest
+    > test-only dojo.kata1.ListLengthTest
 
 Eclipse:
 --------
