@@ -15,7 +15,7 @@ class JSONFormatterParserTest extends AbstractTest {
           val parser = new JSONParser()
           val parseResult = parser.parseAll(parser.root, inputString)
           println("parseResult: " + parseResult.toString())
-
+val res = parseResult.get
           // format
           val formatter = parser //new JSONFormatter()
           val output = formatter.prettyPrint(parseResult, 0)
