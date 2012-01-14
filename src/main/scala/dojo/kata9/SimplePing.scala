@@ -25,7 +25,7 @@ object SimplePing {
       so.close();
       Some((System.nanoTime() - tm) / 1000000L)
     } catch {
-      case ex@(_: UnknownHostException | _:ConnectException | _:NoRouteToHostException) => {
+      case ex @(_: UnknownHostException | _:ConnectException | _:NoRouteToHostException) => {
         None
       }
     }
