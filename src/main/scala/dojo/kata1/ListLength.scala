@@ -1,4 +1,5 @@
 package dojo.kata1
+import scala.annotation.tailrec
 
 /*
  *  a) Find the number of elements of a list.
@@ -25,6 +26,7 @@ object ListLength {
   	len(list, 0)
   }
 
+  @tailrec
   private def len(list: List[Any], count:Int):Int = {
     if(list.isEmpty){
       count
@@ -38,7 +40,7 @@ object ListLength {
    * Siehe Kap. 16.7 Higher order methods on Lists (S.319)
    */
   def lengthOfListWithFoldingRight(list: List[Any]) = {
-    (list :\ 0)((x:Any, y:Int) => 1+y)
+    (list foldRight 0)((x:Any, y:Int) => 1+y)
   }
 
   /**

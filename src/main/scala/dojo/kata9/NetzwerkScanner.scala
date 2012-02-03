@@ -22,7 +22,7 @@ object NetzwerkScanner {
 
 		def main(args: Array[String]) { // java.net.UnknownHostException
 	  val scanner = new NetzwerkScanner()
-		scanner.startQueries(DefaultInterval, new PrintWriter(System.out))
+		scanner.startQueries(DefaultInterval, new FileWriter(LogFile))
 	}
 }
 
@@ -31,7 +31,7 @@ class NetzwerkScanner {
 
 	def ping(host:String, port:Integer)= SimplePing.ping(host, port)
 
-	private def startQueries(interval: Int, out: Writer) = {
+	 def startQueries(interval: Int, out: Writer) = {
     println("Logging network access to " + LogFile)
     logNetworkStatus(false)
 

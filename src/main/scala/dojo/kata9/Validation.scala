@@ -1,9 +1,8 @@
 package dojo.kata9
 
-
-class Validation(val success: Boolean) {
+class Validation(var success: Boolean) {
   def and(validation: Validation): Validation = {
-    new Validation(success && validation.success )
+    new Validation(success && validation.success)
   }
   def onSuccess(fun: => Unit) {
     if (success) {
@@ -12,26 +11,7 @@ class Validation(val success: Boolean) {
   }
 }
 object Validation {
-  def main(args: Array[String]) {
-    val s = "jaX"
-    val t = "nameX"
-    val result = 
-      validate(s == "ja") { 
-      	println("s war nicht 'ja'") 
-      } and validate(t == "name") { 
-        println("t war nicht 'name'") 
-      } onSuccess {
-        println("Ein voller Erfolg!")
-      }
-      
-      val part = validate(s=="jaX")_
-      val applied = part.apply{
-        println("geht nicht!")
-      }
-      applied.onSuccess{
-        println("sonstwas")
-      }
-  }
+  
   def validate(f: => Boolean)(onFailure: => Unit): Validation = {
     if (!f) {
       onFailure
@@ -40,4 +20,29 @@ object Validation {
       new Validation(true)
     }
   }
+}
+
+object ValidatorMain{
+  import Validation._
+  
+	def main(args: Array[String]) {
+		val s = "ja"
+			val t = "name"
+				
+				validate(s == "ja") {
+			println("s war nicht 'ja'")
+		} and validate(t == "name") {
+			println("t war nicht 'name'")
+		} onSuccess {
+			println("Ein voller Erfolg!")
+		}
+		
+//    val part = validate(s == "jaX")_
+//    val applied = part.apply {
+//      println("geht nicht!")
+//    }
+//    applied.onSuccess {
+//      println("sonstwas")
+//    }
+	}
 }
