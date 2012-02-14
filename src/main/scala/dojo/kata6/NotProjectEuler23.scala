@@ -3,20 +3,27 @@
  */
 package dojo.kata6
 
-import scala.util._
+import java.lang.System
 
 /**
+ * This class does not implement a solution to Project Euler Problem 23.
+ * 
+ * Instead of "Find the sum of all the positive integers which cannot be
+ * written as the sum of TWO abundant numbers." it calculates the " sum of all
+ * the positive integers which cannot be written as the sum of ANY (1...N)
+ * abundant numbers"
+ * 
  * @author Nils
  */
-object ProjectEuler23 extends Kata6 {
-//  private val LIMIT = 28123 // 10000 // 1000
+object NotProjectEuler23 extends Kata6 {
+  //  private val LIMIT = 28123 // 10000 // 1000
 
   /**
    * Creates all abundant numbers between 12 and 28123. (Is already sorted!)
    * @see Project Euler 23 for clarification of the limits.
    */
   override def allAbundants = {
-   (12 to LIMIT).filter(check(_) == 'abundant)
+    (12 to LIMIT).filter(check(_) == 'abundant)
   }
 
   def check(number: Int): Symbol = {
@@ -30,16 +37,11 @@ object ProjectEuler23 extends Kata6 {
    * Sum of proper divisors.
    */
   def sumOfProperDivisors(number: Int): Long = {
-    // (
-    //  for (
-    //    i <- 2 to sqrt(number) if (number % i == 0)
-    //  ) yield i
-    // ).sum
     (1 to number / 2).filter(number % _ == 0).sum
   }
 
   override def notExpressableAsSumOfAbundantNumbers: Set[Int] = {
-    var crossedOut: Set[Int] = Set() 
+    var crossedOut: Set[Int] = Set()
     crossedOut += 0
 
     messuare("Big loop") { _ =>
