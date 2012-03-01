@@ -18,16 +18,18 @@ class GistConverter(url: String) {
     val site = new URL(url)
     val stream = null.asInstanceOf[InputStream]
 
-    using(Source.fromInputStream(site.openStream())) {
-      (
-        source =>
+   def block:(Source => Unit) = {
+      source =>
           source.getLines().foreach {
             (
               line =>
                 // remove all the document-write-stuff and keep the pure HTML:
                 strb.append(replaceClasses(removeDocWriteStuff(line))))
-          })
-
+          }
+    }
+    
+    using(Source.fromInputStream(site.openStream())) {
+    	block
     }
     strb.toString()
   }

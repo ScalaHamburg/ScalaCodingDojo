@@ -13,26 +13,28 @@ import java.io.PrintWriter
  * Utility zum überprüfen der Internetverbindung
  */
 object NetzwerkScanner {
-	val LogFile = "c:/tmp/netzabdeckung.txt"
-		val Second = 1000 // milliseconds
-		val DefaultInterval = 3
-		val writer = new FileWriter(LogFile)
-	val TestedHost = "www.google.de"
-		val TestedPort = 80
+  val LogFile = "c:/tmp/netzabdeckung.txt"
+  val Second = 1000 // milliseconds
+  val DefaultInterval = 3
+  val TestedHost = "www.google.de"
+  val TestedPort = 80
 
-		def main(args: Array[String]) { // java.net.UnknownHostException
-	  val scanner = new NetzwerkScanner()
-		scanner.startQueries(DefaultInterval, new FileWriter(LogFile))
-	}
+  def main(args: Array[String]) { // java.net.UnknownHostException
+    val scanner = new NetzwerkScanner()
+    println("Logging network access to " + LogFile)
+    scanner.startQueries(DefaultInterval, new FileWriter(LogFile))
+  }
 }
 
+// Refactoring1: Objekt in Klasse gewandelt
 class NetzwerkScanner {
-	import NetzwerkScanner._
+  import NetzwerkScanner._
 
-	def ping(host:String, port:Integer)= SimplePing.ping(host, port)
+  // Refactoring2: Import durch Delegate ersetzen.
+  // import SimplePing.ping
+  def ping(host: String, port: Integer) = { new SimplePing().ping(host, port) }
 
-	 def startQueries(interval: Int, out: Writer) = {
-    println("Logging network access to " + LogFile)
+  def startQueries(interval: Int, out: Writer) = {
     logNetworkStatus(false)
 
     def logNetworkStatus(netAccess: Boolean): Boolean = {
@@ -44,7 +46,6 @@ class NetzwerkScanner {
       }
       netAccess
     }
-
 
     val timer = actor {
       var netAccess = false

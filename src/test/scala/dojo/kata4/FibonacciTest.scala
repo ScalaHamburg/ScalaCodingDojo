@@ -19,7 +19,7 @@ class FibonacciTest extends AbstractTest {
   @Test
   def evenFibonacciRecursive {
     execute(4) {
-      val sum = Fibonacci.solve(4000000)
+      val sum = FibonacciShadaj.solve(4000000)
       print(sum)
       sum should be(4613732)
     }

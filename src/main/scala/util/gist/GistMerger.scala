@@ -8,7 +8,7 @@ import scala.io.Source
  * Die fertige HTML-Seite wird auf der Konsole ausgegeben.
  */
 object GistMerger extends App {
-  val InputFile = "util/gist/example.html"
+  val InputFile = "util/gist/blog4.html"
  	val gistPattern = """\[gist:( )?([^\]]*)\]""".r.pattern
     
   val input = Source.fromInputStream(this.getClass().getClassLoader().getResourceAsStream(InputFile))
