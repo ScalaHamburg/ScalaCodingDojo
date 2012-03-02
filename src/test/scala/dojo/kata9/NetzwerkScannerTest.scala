@@ -5,15 +5,22 @@ import org.junit.runner.RunWith
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.junit.JUnitSuite
 import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.matchers.Matcher
 import org.scalatest.FunSuite
 import java.io.StringWriter
+import org.scalatest.matchers.MatchResult
+import org.scalatest.mock.MockitoSugar
+import org.mockito.Mockito._
+import org.mockito.ArgumentMatcher
+import org.mockito.Matchers._
+import org.hamcrest.Description
 
 /**
  * Diesmal ist der Test für eine gegebene Klasse zu erstellen.
  * Bitte nicht von der Abstrakten Testklasse ableiten.
  */
 @RunWith(classOf[JUnitRunner])
-class NetzwerkScannerTest extends FunSuite with ShouldMatchers {
+class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar {
   val Timeout = 100
 
   test("Network available") {
@@ -41,26 +48,23 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers {
     val scanner = new NetzwerkScanner {
       override def ping(host: String, port: Integer) = None
     }
-    val str = new StringWriter()
-    val writer = new BufferedWriter(str)
+    val writer = mock[Writer]
 
     scanner.startQueries(0, writer);
-    Thread.sleep(Timeout)
+    Thread.sleep(Timeout) // Hier gibt es leider nicht die Möglichkeit, eager zu warten, Da sich der etestete Zustand nicht ändert
 
-    val outString = str.getBuffer().toString()
-    outString.contains("Netzzugang") should be(false)
-    outString.length() should be (33) // Nachgezählt (für genau eine Message!)
+    verify(writer) write endsWith("kein Zugang\r\n")
   }
 
   test("Network off/on/off") {
     var online = false
     val scanner = new NetzwerkScanner {
       override def ping(host: String, port: Integer) = {
-        if(online)Some(0L) else None
+        if (online) Some(0L) else None
       }
     }
-    val str = new StringWriter()
-    val writer = new BufferedWriter(str)
+
+    val writer = mock[Writer]
 
     scanner.startQueries(0, writer);
 
@@ -68,12 +72,10 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers {
     online = true
     Thread.sleep(10)
     online = false
-    Thread.sleep(10)
-    
-    val outString = str.getBuffer().toString()
-    outString.contains("kein Zugang") should be(true)
-    outString.contains("Netzzugang") should be(true)
-    outString.length() should be (33 + 32 +33) // Nachgezählt (für genau 3 Messages!)
+    Thread.sleep(100)
+
+    verify(writer, times(2)) write endsWith("kein Zugang\r\n")
+    verify(writer) write endsWith("Netzzugang\r\n")
   }
 
   def withTimer(timedCode: => Unit) = {
@@ -99,8 +101,22 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers {
     }
     success
   }
-}
 
+  class EndStringMatcher(suffix: String) extends ArgumentMatcher[String] {
+    override def describeTo(desc: Description) {
+      desc.appendText("The String does not end with '" + suffix + "'")
+    }
+
+    def matches(left: Any): Boolean = {
+      left match {
+        case left: String => left.endsWith(suffix)
+        case _ => false
+      }
+    }
+  }
+
+  def endsWith(suffix: String): String = argThat(new EndStringMatcher(suffix))
+}
 
 
 /**
