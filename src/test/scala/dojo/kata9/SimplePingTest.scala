@@ -44,9 +44,8 @@ class SimplePingTest extends FunSuite with ShouldMatchers with MockitoSugar {
 
   val exceptions =  Table("exceptions", new UnknownHostException(), new ConnectException(), new NoRouteToHostException())
 
-  test("Exceptions") {
+  test("All Exceptions") {
     forAll(exceptions) { ex: Exception =>
-      val timeout = 1000
 
       val myPing = new SimplePing {
         override def openSocket(hostname: String, port: Integer): Socket = throw ex

@@ -78,6 +78,9 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar
     verify(writer) write endsWith("Netzzugang\r\n")
   }
 
+  /**
+   * Führt den übergebenen Code aus - und gibt die gemessene Zeit in ms zurück
+   */
   def withTimer(timedCode: => Unit) = {
     val start = System.currentTimeMillis()
     timedCode
@@ -102,6 +105,9 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar
     success
   }
 
+  /**
+   * Matcht auf ein String Suffix
+   */
   class EndStringMatcher(suffix: String) extends ArgumentMatcher[String] {
     override def describeTo(desc: Description) {
       desc.appendText("The String does not end with '" + suffix + "'")
