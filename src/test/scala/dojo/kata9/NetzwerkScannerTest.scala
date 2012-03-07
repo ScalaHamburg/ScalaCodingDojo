@@ -42,6 +42,7 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar
       result should be(true)
     }
     println("took: " + time + "ms")
+	scanner.stopQueries()
   }
 
   test("Network offline") {
@@ -54,6 +55,7 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar
     Thread.sleep(Timeout) // Hier gibt es leider nicht die Möglichkeit, eager zu warten, Da sich der etestete Zustand nicht ändert
 
     verify(writer) write endsWith("kein Zugang\r\n")
+	scanner.stopQueries()
   }
 
   test("Network off/on/off") {
@@ -76,6 +78,7 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar
 
     verify(writer, times(2)) write endsWith("kein Zugang\r\n")
     verify(writer) write endsWith("Netzzugang\r\n")
+	scanner.stopQueries()
   }
 
   /**
