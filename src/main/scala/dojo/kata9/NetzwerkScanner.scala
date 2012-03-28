@@ -30,11 +30,16 @@ object NetzwerkScanner {
 class NetzwerkScanner {
   import NetzwerkScanner._
 
+  var started:Boolean = false
   // Refactoring2: Import durch Delegate ersetzen.
   // import SimplePing.ping
   def ping(host: String, port: Integer) = { new SimplePing().ping(host, port) }
 
+  def stopQueries(){
+	started = false
+  }
   def startQueries(interval: Int, out: Writer) = {
+	started = true
     logNetworkStatus(false)
 
     def logNetworkStatus(netAccess: Boolean): Boolean = {
@@ -50,7 +55,7 @@ class NetzwerkScanner {
     val timer = actor {
       var netAccess = false
       (
-        while (true) {
+        while (started) {
           val reachable = ping(TestedHost, TestedPort).isDefined;
           if (reachable) {
             if (!netAccess) {
@@ -66,6 +71,6 @@ class NetzwerkScanner {
           Thread.sleep(interval * Second) // interval seconds
         })
     }
-
+	
   }
 }
