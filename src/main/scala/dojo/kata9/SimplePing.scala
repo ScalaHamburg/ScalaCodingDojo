@@ -6,7 +6,7 @@ class SimplePing() {
   /**
    * kein richtiges Ping, vielmehr ein Test einer Socketverbindung eines beliebigen Ports.
    */
-  def ping(hostName: String, port: Integer): Option[Long] = {
+  def ping(hostName: String, port: Int): Option[Long] = {
     import java.net._
     try {
       var tm = System.nanoTime();
@@ -21,7 +21,8 @@ class SimplePing() {
       }
     }
   }
-  protected def openSocket(hostName: String, port: Integer): Socket = {
+  
+  protected def openSocket(hostName: String, port: Int): Socket = {
     val host = InetAddress.getByName(hostName);
     println("Opening socket to " + host)
     new Socket(host, port);

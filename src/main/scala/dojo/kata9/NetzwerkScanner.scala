@@ -33,7 +33,7 @@ class NetzwerkScanner {
   var started:Boolean = false
   // Refactoring2: Import durch Delegate ersetzen.
   // import SimplePing.ping
-  def ping(host: String, port: Integer) = { new SimplePing().ping(host, port) }
+  def ping(host: String, port: Int) = { new SimplePing().ping(host, port) }
 
   def stopQueries(){
 	started = false

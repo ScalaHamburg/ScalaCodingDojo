@@ -3,6 +3,7 @@
  */
 package dojo.kata10
 import scala.annotation.tailrec
+import scala.math.sqrt
 
 /**
  * The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
@@ -41,8 +42,8 @@ object ProjectEuler10 {
       else if (n % 2 == 0)
         return false
       else {
-        def sqrt = { Math.sqrt(n.toDouble).toLong }
-        for (i <- 3L to sqrt) {
+        def wurzel = { sqrt(n.toDouble).toLong }
+        for (i <- 3L to wurzel) {
           if (n % i == 0) {
             return false
           }

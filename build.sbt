@@ -6,7 +6,7 @@ scalaVersion := "2.9.1"
 
 libraryDependencies += "org.scala-tools" % "scala-stm_2.9.1" % "0.3"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "1.6.1" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "1.7.1" % "test"
 
 libraryDependencies += "junit" % "junit" % "4.10" % "test"
 
@@ -17,4 +17,14 @@ logBuffered in Test := false
 parallelExecution in Test := false
 
 seq(ScctPlugin.scctSettings: _*)
+
+scalacOptions ++= Seq("-deprecation")
+
+// Wenn als "langsam" getaggte Tests nie ausgeführt werden sollen, bitte die nachfolgende Zeile aktivieren
+
+//testOptions in Test += Tests.Argument(TestFrameworks.ScalaTest, "-l", "scaladojo.SlowTest")
+
+// Wenn als "langsam" getaggte Tests für die coverage nie ausgeführt werden sollen, bitte die nachfolgende Zeile auskommentieren
+
+testOptions in CoverageTest += Tests.Argument(TestFrameworks.ScalaTest, "-l", "scaladojo.SlowTest")
 

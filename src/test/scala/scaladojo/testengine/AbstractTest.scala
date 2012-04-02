@@ -2,6 +2,7 @@ package scaladojo.testengine
 import org.scalatest.junit.AssertionsForJUnit
 import java.security.MessageDigest
 import org.scalatest.junit.ShouldMatchersForJUnit
+import org.scalatest.Tag
 
 class AbstractTest extends AssertionsForJUnit with ShouldMatchersForJUnit with AsciiArt {
 
@@ -45,4 +46,7 @@ class AbstractTest extends AssertionsForJUnit with ShouldMatchersForJUnit with A
      super.printFail(text)
      fail(text)
    }
+   
+   object SlowTest extends Tag("scaladojo.SlowTest")
+   
 }

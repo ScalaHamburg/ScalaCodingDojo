@@ -24,12 +24,13 @@ import org.mockito.Mockito._
 class SimplePingTest extends FunSuite with ShouldMatchers with MockitoSugar {
 
   test("timeout") {
-    val timeout = 1000
+    val timeout = 100
 
     val socket = mock[Socket]
 
+    // 'injecten' der openSocket-dummy-methode
     val myPing = new SimplePing {
-      override def openSocket(hostname: String, port: Integer): Socket = {
+      override def openSocket(hostname: String, port: Int): Socket = {
         println("Opening Mock Socket")
         Thread.sleep(timeout)
         socket
@@ -38,23 +39,38 @@ class SimplePingTest extends FunSuite with ShouldMatchers with MockitoSugar {
     
     val result = myPing.ping("anyHost", 0).get.toInt
 
+    // überprüfen, daß die 'close'-Methode auch aufgerufen wurde.
     verify(socket).close()
-    result should (be >= 1000 and be <= 2000)
+    
+    result should (be >= 100 and be <= 150)
   }
 
-  val exceptions =  Table("exceptions", new UnknownHostException(), new ConnectException(), new NoRouteToHostException())
 
   test("All Exceptions") {
+  	val exceptions =  Table("exception", new UnknownHostException(), new ConnectException(), new NoRouteToHostException())
     forAll(exceptions) { ex: Exception =>
 
       val myPing = new SimplePing {
-        override def openSocket(hostname: String, port: Integer): Socket = throw ex
+        override def openSocket(hostname: String, port: Int): Socket = throw ex
       }
 
       val result = myPing.ping("anyHost", 0)
 
       result should be(None)
     }
+  }
+
+  test("Unknown Exception") {
+  	
+  	val myPing = new SimplePing {
+  		override def openSocket(hostname: String, port: Int): Socket = throw new IndexOutOfBoundsException()
+  	}
+  	
+  	val x = intercept[IndexOutOfBoundsException] {
+  		val result = myPing.ping("anyHost", 0)
+  		result should be(None)
+  	}
+  	x.getMessage()//...
   }
 
   

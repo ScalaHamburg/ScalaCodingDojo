@@ -4,6 +4,7 @@
 package dojo.kata6
 
 import java.lang.System
+import scala.math.sqrt
 
 /**
  * This class does not implement a solution to Project Euler Problem 23.
@@ -127,7 +128,7 @@ object NotProjectEuler23 extends Kata6 {
   /**
    * Square Root (for Integers)
    */
-  private def sqrt(i: Int): Int = Math.sqrt(i).round.intValue
+  private def wurzel(i: Int): Int = sqrt(i).round.intValue
 
   private def messuare(name: String)(function: Unit => Unit): Unit = {
     val startTime = System.currentTimeMillis()

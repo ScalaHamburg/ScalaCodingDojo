@@ -1,33 +1,56 @@
 package dojo.kata9
 import java.io.BufferedWriter
+import java.io.StringWriter
 import java.io.Writer
+import org.hamcrest.Description
 import org.junit.runner.RunWith
+import org.mockito.Matchers._
+import org.mockito.Mockito._
+import org.mockito.ArgumentMatcher
 import org.scalatest.junit.JUnitRunner
 import org.scalatest.junit.JUnitSuite
 import org.scalatest.matchers.ShouldMatchers
-import org.scalatest.matchers.Matcher
-import org.scalatest.FunSuite
-import java.io.StringWriter
-import org.scalatest.matchers.MatchResult
 import org.scalatest.mock.MockitoSugar
-import org.mockito.Mockito._
-import org.mockito.ArgumentMatcher
-import org.mockito.Matchers._
-import org.hamcrest.Description
+import org.scalatest.BeforeAndAfterEach
+import org.scalatest.FunSuite
+import org.scalatest.Suite
+
+/**
+ * Fixture für unser SUT
+ */
+trait DummyScanner extends BeforeAndAfterEach { this: Suite =>
+
+	var scanner:NetzwerkScanner = null//.asInstanceOf[NetzwerkScanner]
+
+	// Schalter für das dummy-Netzwerk
+  var online = false
+
+  override def beforeEach() {
+  	// 'injecten' des ping-dummys in unser SUT
+    scanner = new NetzwerkScanner {
+      override def ping(host: String, port: Int) = {
+        if (online) Some(0L) else None
+      }
+    }
+  }
+
+  override def afterEach() {
+    scanner.stopQueries()
+  }
+
+}
 
 /**
  * Diesmal ist der Test für eine gegebene Klasse zu erstellen.
  * Bitte nicht von der Abstrakten Testklasse ableiten.
  */
 @RunWith(classOf[JUnitRunner])
-class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar {
+class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar with DummyScanner {
   val Timeout = 100
 
   test("Network available") {
 
-    val scanner = new NetzwerkScanner {
-      override def ping(host: String, port: Integer) = Some(0L)
-    }
+    online = true
 
     val str = new StringWriter()
     val writer = new BufferedWriter(str)
@@ -41,32 +64,27 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar
       }
       result should be(true)
     }
-    println("took: " + time + "ms")
-	scanner.stopQueries()
+
   }
 
   test("Network offline") {
-    val scanner = new NetzwerkScanner {
-      override def ping(host: String, port: Integer) = None
-    }
+
+    online = false
+
     val writer = mock[Writer]
 
     scanner.startQueries(0, writer);
-    Thread.sleep(Timeout) // Hier gibt es leider nicht die Möglichkeit, eager zu warten, Da sich der etestete Zustand nicht ändert
+    Thread.sleep(Timeout) // Hier gibt es leider nicht die Möglichkeit, eager zu warten, 
+    // da sich der getestete Zustand nicht ändert
 
-    verify(writer) write endsWith("kein Zugang\r\n")
-	scanner.stopQueries()
+    verify(writer).write(endsWith("kein Zugang\r\n"))
+    
   }
 
   test("Network off/on/off") {
-    var online = false
-    val scanner = new NetzwerkScanner {
-      override def ping(host: String, port: Integer) = {
-        if (online) Some(0L) else None
-      }
-    }
-
     val writer = mock[Writer]
+
+    online = false
 
     scanner.startQueries(0, writer);
 
@@ -74,11 +92,10 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar
     online = true
     Thread.sleep(10)
     online = false
-    Thread.sleep(100)
+    Thread.sleep(10)
 
     verify(writer, times(2)) write endsWith("kein Zugang\r\n")
     verify(writer) write endsWith("Netzzugang\r\n")
-	scanner.stopQueries()
   }
 
   /**
@@ -88,7 +105,9 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar
     val start = System.currentTimeMillis()
     timedCode
     val stop = System.currentTimeMillis()
-    stop - start
+    val time = stop - start
+    println("took: " + time + "ms")
+    time
   }
 
   /**
@@ -109,7 +128,9 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar
   }
 
   /**
-   * Matcht auf ein String Suffix
+   * Match't auf ein String Suffix
+   * Siehe auch CustomArgumentMatchers unter
+   * http://mockito.googlecode.com/svn/branches/1.7/javadoc/org/mockito/Matchers.html
    */
   class EndStringMatcher(suffix: String) extends ArgumentMatcher[String] {
     override def describeTo(desc: Description) {
@@ -123,7 +144,7 @@ class NetzwerkScannerTest extends FunSuite with ShouldMatchers with MockitoSugar
       }
     }
   }
-
+  // erstellen eines Custom Argument Matchers
   def endsWith(suffix: String): String = argThat(new EndStringMatcher(suffix))
 }
 
