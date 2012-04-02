@@ -39,13 +39,13 @@ val res = parseResult.get
 		"address book": {
 			"name" : "John Smith",
 			"address" : {
-				"street" : "Louise-Schroeder-Weg",
-				"city" : "L�beck",
-				"zip" : 23558
+				"street" : "Aghate-Lasch-Weg",
+				"city" : "Hamburg",
+				"zip" : 22589
 			},
 			"phone numbers" : [
-				"0178 8866017",
-				"04514795768"
+				"0174 12345678",
+				"0406543210"
 			]
 		}
 	}
