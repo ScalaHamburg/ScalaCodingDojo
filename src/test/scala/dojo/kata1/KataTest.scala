@@ -7,7 +7,7 @@ import org.junit.Before
 import org.junit.Test
 import scaladojo.testengine.AbstractTest
 
-class ListLengthTest extends AbstractTest {
+class KataTest extends AbstractTest {
   
   @Before def before {
   	printHeading(1)

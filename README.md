@@ -1,4 +1,4 @@
-Scala Coding Dojo
+﻿Scala Coding Dojo
 =================
 
 Dies ist ein Scala Playground für Neueinsteiger.
@@ -16,7 +16,7 @@ Eclipse:
   Window/Preferences/Java/Build Path/Classpath Variables/IVY_CACHE=...
   z.B. {HOME}/.ivy2/cache
 
-
+sbt test:package (zum erstellen des Testpakets für das Starterprojekt)
 
 Im Moment herrscht hier noch das Chaos - aber: "with a little help..."
 
