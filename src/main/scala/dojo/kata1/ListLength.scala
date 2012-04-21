@@ -13,7 +13,7 @@ import scala.annotation.tailrec
 /**
  * Einfach nur die Methoden ausimplementieren und den Test starten (sbt test-only dojo.kata1.Kata) 
  */
-object ListLength {
+object ListLength_Muster {
   
   def lengthOfList(list: List[Any]) = {
     list.length

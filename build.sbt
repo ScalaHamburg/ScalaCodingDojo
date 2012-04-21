@@ -14,6 +14,8 @@ libraryDependencies += "com.novocode" % "junit-interface" % "0.7" % "test->defau
 
 logBuffered in Test := false
 
+publishArtifact in Test := true
+
 parallelExecution in Test := false
 
 seq(ScctPlugin.scctSettings: _*)
