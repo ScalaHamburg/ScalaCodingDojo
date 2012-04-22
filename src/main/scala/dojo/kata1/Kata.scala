@@ -24,7 +24,7 @@ object ListLength {
 
   /**
    * In dieser Implementierung soll die Länge der Liste per Recursion ermittelt werden
-   * Damit es performant auch mit längeren Listen funktioniert, sollte es teilrecursiv
+   * Damit es performant auch mit längeren Listen funktioniert, sollte es tailrecursiv
    * umgesetzt werden Siehe http://www.artima.com/pins1ed/functions-and-closures.html#8.9
    * Dazu bitte die Kommentarzeichen vor '@tailrec' entfernen.
    */

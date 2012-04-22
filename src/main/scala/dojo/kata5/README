@@ -1,0 +1,9 @@
+
+Wenn die Zahlen von 1 bis 5 in englischen Worten geschrieben werden: one, two, three, four, five
+dann benötigt man 3 + 3 + 5 + 4 + 4 = 19 Buchstaben um es niederzuschreiben.
+
+Wieviele Buchstaben benötigt man um alle Zahlen von 1 bis 1000 inclusive als englische Zahlwörter zu schreiben?
+
+Anmerkung: Leerzeichen oder Bindestriche werden nicht mitgezählt. z.B. 342 (three hundred and forty-two)
+besteht aus 23 Buchstaben und 115 (one hundred and fifteen) aus 20 Buchstaben. Das Wort 'and' muß mitgezählt werden.
+

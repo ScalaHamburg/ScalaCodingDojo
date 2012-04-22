@@ -1,4 +1,4 @@
-package dojo.kata6.original
+﻿package dojo.kata6.original
 
 import java.io.FileReader
 //import scala.dbc.result.Tuple
@@ -71,21 +71,21 @@ object SvnConfigParser extends SvnConfigParser {
   val input = """# h
 
   [aliases]
-abelb=uid=abelb,ou=People,dc=logica-development,dc=com
-boosmannd=uid=boosmannd,OU=People,DC=logica-development,DC=com
+ulli=uid=ulli,ou=People,dc=company-development,dc=com
+heinz=uid=heinz,OU=People,DC=company-development,DC=com
 
 [groups]
-Airbus_TIS_3DPDF-dev=bruegmannm,ccaro,dolkd,harmss,simbeckm,todtf
-Airbus_TIS_3DPDF-dev2=bruegmannm,ccaro,dolkd,harmss,simbeckm,todtf
-Airbus_TIS_3DPDF-read=chmeleva,lemmerg
+Autoflug-dev=berndi,heinz,kurt,schmiddi,horst,hubert
+Autoflug-dev2=heinz,bernd,werner,saschi,todde,ulf
+Autoflug-read=gitte,lars
 
-[Airbus_TIS_3DPDF:/]
-@Airbus_TIS_3DPDF-dev=rw
-@Airbus_TIS_3DPDF-read=r
+[Autoflug:/]
+@Autoflug-dev=rw
+@Autoflug-read=r
 
-[DPAG-HubIT:/]
-@DPAG-HubIT-dev=rw
-@DPAG-HubIT-read=r
+[Sales:/]
+@Sales-dev=rw
+@Sales-read=r
 
 """
 
@@ -156,13 +156,13 @@ object JSONParser extends JSONParser {
 		"address book": {
 			"name" : "John Smith",
 			"address" : {
-				"street" : "Louise-Schroeder-Weg",
-				"city" : "L�beck",
-				"zip" : 23558
+				"street" : "Aghate-Lasch-Weg",
+				"city" : "Hamburg",
+				"zip" : 22864
 			},
 			"phone numbers" : [
-				"0178 8866017",
-				"04514795768"
+				"0176 1234567",
+				"0402345678"
 			]
 		}
 	}

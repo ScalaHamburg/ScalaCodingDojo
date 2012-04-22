@@ -1,5 +1,10 @@
-Kata 1
+
+Kata 1: ListLength
 =======
-Für die Programmieraufgabe sieh Dir bitte die Klasse dojo.kata1.Kata an.
-Darin befinden sich einige Methoden, die implementiert werden sollen.
+Für diese Aufgabe soll die Länge einer Liste ermittelt werden.
+
+Für die Programmieraufgabe sieh Dir bitte die Klasse dojo.kata1.Kata an,
+darin befinden sich einige Methoden, die implementiert werden sollen.
+
 Weitere Dokumentation befindet sich direkt in der Klasse.
+
