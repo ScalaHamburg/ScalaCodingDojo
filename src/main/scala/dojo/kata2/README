@@ -1,0 +1,8 @@
+
+Kata 2: SumOfMultiples
+=======
+
+Nehmen wir alle natürlichen Zahlen unter 10, die Vielfache von 3 oder 5 sind:
+3, 5, 6 und 9. Die Summe ist 23.
+
+Finde die Summe aller Vielfachen von 3 oder 5 unter 1000

@@ -4,7 +4,7 @@ object Fibonacci {
 
   def solve(lastElement: Int) = {
     // TODO implement me!
-    0
+    None
   }
   
 
