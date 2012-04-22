@@ -1,4 +1,4 @@
-package dojo.kata2
+package dojo.kata5
 
 import java.security.MessageDigest
 import org.junit.Assert.assertEquals

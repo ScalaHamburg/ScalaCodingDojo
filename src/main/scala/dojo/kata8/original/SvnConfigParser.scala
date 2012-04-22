@@ -1,4 +1,4 @@
-﻿package dojo.kata6.original
+package dojo.kata6.original
 
 import java.io.FileReader
 //import scala.dbc.result.Tuple

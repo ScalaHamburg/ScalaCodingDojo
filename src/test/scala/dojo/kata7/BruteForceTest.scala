@@ -1,4 +1,4 @@
-package dojo.kata5
+package dojo.kata7
 import org.junit.Test
 import scaladojo.testengine.AbstractTest
 import org.junit.Ignore

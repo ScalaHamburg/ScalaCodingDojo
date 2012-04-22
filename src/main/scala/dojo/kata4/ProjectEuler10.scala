@@ -1,7 +1,8 @@
 /*
  * Copyright 2011 by Nils Schmidt.
  */
-package dojo.kata10
+package dojo.kata4
+
 import scala.annotation.tailrec
 import scala.math.sqrt
 

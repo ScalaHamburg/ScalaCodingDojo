@@ -1,4 +1,4 @@
-package dojo.kata4
+package dojo.kata3
 
 object Fibonacci {
 

@@ -1,4 +1,4 @@
-package dojo.kata3
+package dojo.kata2
 
 import scaladojo.testengine.AbstractTest
 import org.junit.Before

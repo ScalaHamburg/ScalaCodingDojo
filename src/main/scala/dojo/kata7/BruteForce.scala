@@ -1,4 +1,4 @@
-package dojo.kata5
+package dojo.kata7
 import java.security.MessageDigest
 import scala.actors.Actor._
 import scala.math._

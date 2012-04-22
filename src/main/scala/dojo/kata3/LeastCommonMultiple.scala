@@ -1,4 +1,4 @@
-package dojo.kata4
+package dojo.kata3
 
 /*
  *  a) Find the least common multiple of a collection of numbers.

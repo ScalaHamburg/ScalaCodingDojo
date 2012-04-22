@@ -1,4 +1,4 @@
-package dojo.kata7
+package dojo.kata8
 
 import org.scalatest.prop.TableDrivenPropertyChecks._
 

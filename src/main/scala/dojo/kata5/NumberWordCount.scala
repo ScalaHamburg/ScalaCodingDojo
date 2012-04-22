@@ -1,4 +1,4 @@
-package dojo.kata2
+package dojo.kata5
 
 /*
  * If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there 
